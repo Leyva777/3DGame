@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpy8t4v5ycxhr"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_coin"]
+[ext_resource type="PackedScene" uid="uid://ddgvs8bjyxyih" path="res://KayKit_Prototype_Bits_1.1_FREE/Assets/gltf/Coin_A.gltf" id="2_coin_model"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1"]
+height = 0.3
+radius = 0.4
+
+[node name="Coin" type="Area3D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_coin")
+
+[node name="CoinModel" parent="." instance=ExtResource("2_coin_model")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_1")

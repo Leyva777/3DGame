@@ -1,0 +1,247 @@
+[gd_scene load_steps=25 format=3 uid="uid://bxtl1tkg3y4kh"]
+
+[ext_resource type="Script" uid="uid://bcnlnwpgtkjd3" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://c5p6yqm8jvw5y" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://dpy8t4v5ycxhr" path="res://scenes/items/coin.tscn" id="3_coin"]
+[ext_resource type="PackedScene" uid="uid://bqm7k8f3iu2o5" path="res://scenes/hud.tscn" id="4_hud"]
+[ext_resource type="PackedScene" uid="uid://crqf783uk71xa" path="res://KayKit_Prototype_Bits_1.1_FREE/Assets/gltf/Primitive_Floor.gltf" id="5_floor"]
+[ext_resource type="PackedScene" uid="uid://xcwu3r5rdjtu" path="res://KayKit_Prototype_Bits_1.1_FREE/Assets/gltf/Cube_Prototype_Large_A.gltf" id="6_platform"]
+[ext_resource type="PackedScene" uid="uid://co0patvvtr2ta" path="res://KayKit_Prototype_Bits_1.1_FREE/Assets/gltf/Barrel_A.gltf" id="7_barrel"]
+[ext_resource type="PackedScene" uid="uid://ckbe8talkx1et" path="res://KayKit_Prototype_Bits_1.1_FREE/Assets/gltf/Box_A.gltf" id="8_box"]
+[ext_resource type="PackedScene" uid="uid://b083gmqyxdbcs" path="res://KayKit_Prototype_Bits_1.1_FREE/Assets/gltf/target.gltf" id="9_target"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5"]
+size = Vector3(4.1347046, 1, 4.041931)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6"]
+size = Vector3(4.1626587, 1, 3.9683228)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7"]
+size = Vector3(4.1660767, 0.7159424, 4.3288574)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8"]
+size = Vector3(4.0270996, 1, 4.120117)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_9"]
+size = Vector3(4.453247, 1, 4.108032)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10"]
+size = Vector3(4.140259, 1, 4.727417)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11"]
+size = Vector3(4.11322, 1, 4.1001587)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12"]
+size = Vector3(3.8796387, 1, 4.1415405)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13"]
+size = Vector3(4.223755, 1, 4.0423584)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2"]
+size = Vector3(4.4484863, 3.8788452, 4.588257)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3"]
+size = Vector3(3.885498, 3.9157715, 3.668518)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4"]
+size = Vector3(3.6812744, 3.912941, 3.8599243)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_main")
+metadata/_edit_group_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 10, 0)
+shadow_enabled = true
+
+[node name="FloorTiles" type="Node3D" parent="."]
+
+[node name="Floor1" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor1" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15829468, 0, 0.124420166)
+shape = SubResource("BoxShape3D_5")
+
+[node name="Floor2" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor2" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027496338, 0, 0.023773193)
+shape = SubResource("BoxShape3D_6")
+
+[node name="Floor3" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor3" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26970768, -0.14202881, -0.008546829)
+shape = SubResource("BoxShape3D_7")
+
+[node name="Floor4" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor4" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16345215, 0, 0.084472656)
+shape = SubResource("BoxShape3D_8")
+
+[node name="Floor5" type="StaticBody3D" parent="FloorTiles"]
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor5" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065979004, 0, -0.06414795)
+shape = SubResource("BoxShape3D_9")
+
+[node name="Floor6" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor6" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23858643, 0, 0.1942749)
+shape = SubResource("BoxShape3D_10")
+
+[node name="Floor7" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor7" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2696228, 0, -0.2003479)
+shape = SubResource("BoxShape3D_11")
+
+[node name="Floor8" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor8" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07507324, 0, -0.10507202)
+shape = SubResource("BoxShape3D_12")
+
+[node name="Floor9" type="StaticBody3D" parent="FloorTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+collision_mask = 0
+
+[node name="FloorModel" parent="FloorTiles/Floor9" instance=ExtResource("5_floor")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorTiles/Floor9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027404785, 0, -0.061340332)
+shape = SubResource("BoxShape3D_13")
+
+[node name="Platform1" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 0)
+collision_mask = 0
+
+[node name="PlatformModel" parent="Platform1" instance=ExtResource("6_platform")]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45324707, 1.9598694, 0.0065307617)
+shape = SubResource("BoxShape3D_2")
+
+[node name="Platform4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9851818, 1.5839701, 4.6016874)
+collision_mask = 0
+
+[node name="PlatformModel" parent="Platform4" instance=ExtResource("6_platform")]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45324707, 1.9598694, 0.0065307617)
+shape = SubResource("BoxShape3D_2")
+
+[node name="Platform2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 8)
+collision_mask = 0
+
+[node name="PlatformModel" parent="Platform2" instance=ExtResource("6_platform")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021606445, 1.9508057, 0.052581787)
+shape = SubResource("BoxShape3D_3")
+
+[node name="Platform3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 15)
+collision_mask = 0
+
+[node name="PlatformModel" parent="Platform3" instance=ExtResource("6_platform")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008239746, 1.9723015, 0.019378662)
+shape = SubResource("BoxShape3D_4")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Coin1" parent="." instance=ExtResource("3_coin")]
+transform = Transform3D(1.382832, 0, 0, 0, 1.382832, 0, 0, 0, 1.382832, 10.944215, 2.0037043, -9.87522)
+
+[node name="Coin2" parent="." instance=ExtResource("3_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.525166, 6.9118724, 0)
+
+[node name="Coin3" parent="." instance=ExtResource("3_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 8.79792, 8)
+
+[node name="Coin4" parent="." instance=ExtResource("3_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.82505, 15)
+
+[node name="Coin5" parent="." instance=ExtResource("3_coin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.19342, 1.971823, 8.872108)
+
+[node name="Decoration" type="Node3D" parent="."]
+
+[node name="Barrel1" parent="Decoration" instance=ExtResource("7_barrel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.924666, 1.3975277, -10.329079)
+
+[node name="Barrel2" parent="Decoration" instance=ExtResource("7_barrel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9842205, 1.4676142, -10.965028)
+
+[node name="Box1" parent="Decoration" instance=ExtResource("8_box")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.453621, 0.93503237, 10.043013)
+
+[node name="Box2" parent="Decoration" instance=ExtResource("8_box")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.5, -12)
+
+[node name="Target1" parent="Decoration" instance=ExtResource("9_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 15)
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="CameraBase" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 15, 20)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="CameraBase"]

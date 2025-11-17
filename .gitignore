@@ -15,8 +15,8 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
-# Build folder
-build/
+# Build folder (commented to allow uploading executables)
+# build/
 
 # System/tool-specific ignores
 .DS_Store
